@@ -1,0 +1,292 @@
+
+\documentclass{article}
+\usepackage[landscape]{geometry}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{listings, lstautogobble}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{amsmath,amssymb}
+
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+
+\advance\topmargin-.8in
+\advance\textheight3in
+\advance\textwidth3in
+\advance\oddsidemargin-1.5in
+\advance\evensidemargin-1.5in
+\parindent0pt
+\parskip2pt
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+\lstset{language=Java,
+    basicstyle=\scriptsize\ttfamily,
+    commentstyle=\ttfamily\itshape\color{gray},
+    stringstyle=\ttfamily,
+    showstringspaces=false,
+    breaklines=true,
+    frameround=ffff,
+    frame=single,
+    rulecolor=\color{black},
+    autogobble=true
+}
+
+
+%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
+\begin{document}
+
+\begin{center}{\huge{\textbf{CS5234 Cheat Sheet \small{Gabriel Yeo}}}}\\
+\end{center}
+\begin{multicols*}{3}
+
+\tikzstyle{mybox} = [draw=black, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=black, text=white, font=\bfseries]
+
+%------------ Inequalities ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \small{
+    	\begin{tabular}{lp{5cm} l}
+    		\textit{Markov:} 
+    		& $P(X \geq \alpha) \leq \frac{E(X)}{\alpha}$ \\
+    		\textit{Chebyshev:} 
+            & $P(|X - \mu| \geq k) \leq \frac{Var(X)}{k^2}$ \\
+            \textit{Chernoff:} 
+            & $P(X \leq (1-\delta)\mu) \leq e^{-\frac{\delta^2\mu}{2}} \leq e^{-\frac{\delta^2\mu}{3}}$ \\
+            & $P(X \geq (1+\delta)\mu) \leq e^{-\frac{\delta^2\mu}{2+\delta}} \leq e^{-\frac{\delta^2\mu}{3}}$ \\
+            & $X = X_1 + ... + X_n$, \\
+            & $X_i \in \{0, 1\}$, (ind. Bernoulli) \\
+            \textit{Chernoff:} 
+            & $P(|X - \mu| \geq \delta\mu) \leq 2e^{-\frac{\delta^2\mu}{3}}$ \\
+            \textit{Hoeffding:} 
+            & $P(|X - \mu| \geq t) \leq 2e^{\frac{-2t^2}{n}}$ \\
+            & $X = X_1 + ... + X_n$, \\
+            & $X_i \in [0, 1]$ \\
+            \textit{Hoeffding:} 
+            & $P(|\overline X - E[\overline X]| \geq t) \leq 2e^{-2nt^2}$ \\
+            & $\overline X = \frac{1}{n}(X_1 + ... + X_n)$ \\ 
+            \textit{Hoeffding (gen):} 
+            & $P(|\overline X - E[\overline X]| \geq t) \leq 2e^{-\frac{2t^2}{\sum (a_i - b_i)^2}}$ \\
+            & $X_i \in [a_i, b_i]$ \\
+        \end{tabular}
+    }
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Inequalities};
+\end{tikzpicture}
+
+%------------ Facts ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \small{
+    	\begin{tabular}{lp{4cm} l}
+    	\textit{Taylor expansion}: 
+    	& $e^{x} = 1 + x + \frac{x^2}{2!} + ... = \sum\limits^{\infty} \frac{x^n}{n!}$ \\
+    	\textit{For $0 < x \leq 1$}:
+    	& $1-x \leq e^{-x} \leq 1 - \frac{x}{2}$ \\
+    	\textit{For $0 < x \leq 1$}:
+    	& $\frac{1}{e^{2}} \leq (1-x)^{1/x} \leq \frac{1}{e}$ \\
+    	\textit{Approx $\binom{a}{b}$}:
+    	& $(\frac{a}{b})^b \leq \binom{a}{b} \leq (\frac{ea}{b})^b$ \\
+    	\textit{For $0 < x < 1$}:
+    	& $\sum\limits_{i=0}^{\infty} a^i = \frac{1}{1-a}$ \\
+    	\textit{Natural log}:
+    	& $ln(n-1) \leq \sum\limits_{i=1}^{n} \frac{1}{i} \leq ln(n) + 1$ \\
+    	\textit{Powers of 2}:
+    	& $\sum\limits_{i=0}^{n}2^i = 2^{n+1}-1$ \\
+    	\textit{$1/e$}: 
+    	& = 0.36787944117 \\ 
+    	\textit{$1/e^2$}:
+    	& = 0.13533528323 \\ 
+        \end{tabular}
+    }
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Facts};
+\end{tikzpicture}
+
+%------------ Probability ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \small{
+    	\begin{tabular}{lp{4cm} l}
+    	    \textit{Expectation}: 
+    	    & $E[X] = \sum\limits_{v \in D} v \cdot Pr[X=v]$ \\
+    	    
+    	    \textit{Variance}: 
+    	    & $Var[X] = E[(X - E[X])^2)]$ \\
+    	    & $= E[X^2] - E[X]$ \\
+    	    
+    	    \textit{More variance}: 
+    	    & $Var[aX] = a^2Var[X]$ \\
+    	    
+    	    \textit{Linearity of expectation}: 
+    	    & $E[\sum X_i] = \sum E[X_i] $ \\
+    	    
+    	    \textit{If independent $X_i$}:
+    	    & $Var[\sum X_i] = \sum Var[X_i] $ \\
+    	    
+    	    \textit{Conditional}:
+    	    & $P[X and Y] = P[X|Y]\cdot P[Y]$ \\
+    	    
+    	    \textit{Independence}:
+    	    & $P[X and Y] = P[X]\cdot P[Y]$ \\
+    	    
+    	    \textit{Union bound}:
+    	    & $P[\bigcup E_i] \leq \sum P[E_i]$
+        \end{tabular}
+    }
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Probability};
+\end{tikzpicture}
+
+
+\vfill\null
+\columnbreak
+
+
+%------------ Complexities ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \small{
+    	\begin{tabular}{|l|c|c|}\hline
+    	\textbf{Algorithm} & \textbf{Classical} & \textbf{Approx} \\ \hline
+    	BFS & $O(n+m)$ & \\
+    	Connected? & $O(n+m)$ & $O(\frac{1}{\epsilon^2d})$\\
+    	\# CCs & $O(n+m)$ & $O(\frac{d}{\epsilon^3})$ \\
+    	MST weight & $O(mlogn)$ & $O(\frac{dW^4logW}{\epsilon^3})$ \\
+    	Prim's & $O((m + n)\cdot logn)$ & \\
+    	Prim's (Fib heap) & $O(m + nlogn)$ & \\
+    	Kruskal's (MST) & $O(mlogn)$ & \\
+    	Dijkstra & $O((m + n)\cdot logn)$ & \\
+    	Dijkstra (Fib heap) & $O(m + nlogn)$ & \\
+    	\hline
+        \end{tabular}
+    }
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Complexities};
+\end{tikzpicture}
+
+
+%------------ Sampling1 ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \small{
+    	Give an array $A$ with $n$ elements, $A[i] \in {0, 1}$: \\
+    	(1) If array has $\geq \epsilon n$ 1's, return False with probability at least $1-\delta$: \\
+    	Assume $\geq \epsilon n$ 1's, then for sample $i$: \\
+    	$Pr[A[i] = 1] \geq \epsilon n/n \geq \epsilon$. \\
+    	\begin{align*} 
+    	Pr(\text{all samples are 0})
+    	&\leq (1-\epsilon)^s \\
+    	&\leq (1-\epsilon)^{\frac{ln(1/\delta)}{\epsilon}} \\
+    	&\leq e^{-ln(1/\delta)} \\
+    	&\leq \delta
+    	\end{align*}
+    	Fix $s = \frac{ln(1/\delta)}{\epsilon}$
+    }
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Lecture 1 All 0s};
+\end{tikzpicture}
+
+%------------ Sampling2 ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \small{
+    	Give an array $A$ with $n$ elements, $A[i] \in {0, 1}$: \\
+    	(1) Find number of 1's $\pm \epsilon$ with probability at least $1-\delta$. \\
+    	Let $Y_i$ be $s$ independent samples in $[0, 1]$. \\
+    	Output = $Z = 1/s \sum Y_i$ \\
+    	Probability of failure:
+    	\begin{align*} 
+    	Pr(|Z - E[Z]| \geq \epsilon) &\leq 2e^{-2s\epsilon^2} \\
+    	&\leq 2e^{-2\frac{ln(2/\delta)}{2\epsilon^2}\epsilon^2} \\
+    	&\leq 2e^{-ln(2/\delta)} \\
+    	&\leq 2e^{ln(\delta/2)} \\
+    	&\leq 2 \cdot \delta/2 \\
+    	&\leq \delta
+    	\end{align*}
+    	Fix $s = \frac{ln(2/\delta)}{2\epsilon^2}$
+    }
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Lecture 1 Number of 1s};
+\end{tikzpicture}
+
+
+\vfill\null
+\columnbreak
+
+
+%------------ Connectivity ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \small{
+        $G$ is \epsilon-close to connected if you can modify at most $\epsilon nd$ entries in the adjaceny list to make it connected.
+    	If $G(V, E)$ is connected, output True, else if \epsilon-far from connected, output False. \\ 
+        \begin{lstlisting}[mathescape]
+        Connected(G, n, d, $\epsilon$)
+            Repeat $16/\epsilon d$ times:
+                - Choose a random node $u$
+                - Do a BFS from $u$, stopping after $8/\epsilon d$ nodes seen.
+                - If CC of $u$ has $\leq 8/\epsilon d$ nodes, return FALSE.
+            Return TRUE
+        \end{lstlisting}
+        BFS cost = $\frac{8}{\epsilon d} \cdot d$ \\
+        Total complexity = $O(1/\epsilon^2d)$
+    }
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Lecture 2 Connectivity};
+\end{tikzpicture}
+
+
+%------------ Caching ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \small{
+        Output CC such that: $|CC(G) - C| \leq \epsilon n$, w.p. > $\delta$ \\ 
+        Define $n(u)$ = num nodes in the CC of $u$. \\
+        $cost(u) = 1/n(u)$. \\
+        $\sum\limits_{u \in CC_i} cost(u) = 1$.\\
+        \begin{lstlisting}[mathescape]
+            sum = 0
+            for $j$ = 1 to $s$:
+                - Sample $u$ randomly
+                - sum := sum + cost($u$)
+            return n $\cdot$ (sum/s)
+        \end{lstlisting}
+        Let $Y_j = cost(u_j)$ \\
+        $E[Y_j] = \sum \frac{1}{n} cost(u_i) = \frac{1}{n} CC(G)$ \\ 
+        $E[\sum Y_j] = s \cdot E[Y_j] = \frac{s}{n} CC(G)$ \\
+        Since we output $\frac{n}{s} \sum Y_j$, we get $E[\frac{n}{s} \sum Y_j] = CC(G)$
+
+
+    }
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Lecture 2 Connected Components};
+\end{tikzpicture}
+
+
+
+\end{multicols*}
+\end{document}
