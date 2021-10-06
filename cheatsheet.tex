@@ -234,7 +234,7 @@
 \columnbreak
 
 
-%------------ Connectivity ---------------
+%------------ Lecture 2 ---------------
 \begin{tikzpicture}
 \node [mybox] (box){%
     \begin{minipage}{0.3\textwidth}
@@ -258,28 +258,41 @@
 \end{tikzpicture}
 
 
-%------------ Caching ---------------
+%------------ Lecture 2 ---------------
 \begin{tikzpicture}
 \node [mybox] (box){%
     \begin{minipage}{0.3\textwidth}
     \small{
-        Output CC such that: $|CC(G) - C| \leq \epsilon n$, w.p. > $\delta$ \\ 
+        Output CC such that: $|CC(G) - C| \leq \epsilon n$, w.p. > $1 - \delta$ \\ 
         Define $n(u)$ = num nodes in the CC of $u$. \\
         $cost(u) = 1/n(u)$. \\
         $\sum\limits_{u \in CC_i} cost(u) = 1$.\\
         \begin{lstlisting}[mathescape]
             sum = 0
             for $j$ = 1 to $s$:
-                - Sample $u$ randomly
-                - sum := sum + cost($u$)
+                - Sample $u$ randomly 
+                - BFS from $u$, stop when see up to $2/\epsilon$ nodes
+                - If BFS found $> 2/\epsilon$ node:
+                    - sum := sum + $\epsilon/2$
+                - Else:
+                    - sum := sum + cost($u$)
             return n $\cdot$ (sum/s)
         \end{lstlisting}
-        Let $Y_j = cost(u_j)$ \\
-        $E[Y_j] = \sum \frac{1}{n} cost(u_i) = \frac{1}{n} CC(G)$ \\ 
-        $E[\sum Y_j] = s \cdot E[Y_j] = \frac{s}{n} CC(G)$ \\
-        Since we output $\frac{n}{s} \sum Y_j$, we get $E[\frac{n}{s} \sum Y_j] = CC(G)$
-
-
+        Let $\overline C = \sum cost(u_j)$ \\
+        Let $Y_j = cost(u_j)$ of our sample $j$ \\
+        $|CC(G) - \overline C| \leq \epsilon n /2$ \\
+        $E[Y_j] = \sum \frac{1}{n} cost(u_i) = \frac{1}{n} \overline C$ \\ 
+        $E[\sum Y_j] = s \cdot E[Y_j] = \frac{s}{n} \overline C$ \\
+        Since we output $\frac{n}{s} \sum Y_j$, we get $E[\frac{n}{s} \sum Y_j] = \overline C$
+    	\begin{align*} 
+        &P(|\overline C - \frac{n}{s} \sum Y_j| > \epsilon n/2) \\
+        &= P(|E[\sum Y_j] - \sum Y_j| > \frac{s}{n}\epsilon n/2) \\
+        &= P(|E[\sum Y_j] - \sum Y_j| > s\epsilon/2) \\
+        &\leq 2e^{-2\epsilon^2s^2/4s} \\
+        &\leq 2e^{-\epsilon^2s/2} \leq \delta
+        \end{align*}
+        Set $s = \frac{2}{\epsilon^2}ln(2/\delta)$. \\
+        Complexity = $2d/\epsilon \cdot O(\frac{1}{\epsilon^2}ln(1/\delta)) = O(\frac{d}{\epsilon^3}ln(1/\delta))$.
     }
     \end{minipage}
 };
@@ -287,6 +300,28 @@
 \end{tikzpicture}
 
 
+%------------ Lecture 3 ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        \small{
+            $G$ is \epsilon-close to connected if you can modify at most $\epsilon nd$ entries in the adjaceny list to make it connected.
+            If $G(V, E)$ is connected, output True, else if \epsilon-far from connected, output False. \\ 
+            \begin{lstlisting}[mathescape]
+            Connected(G, n, d, $\epsilon$)
+                Repeat $16/\epsilon d$ times:
+                    - Choose a random node $u$
+                    - Do a BFS from $u$, stopping after $8/\epsilon d$ nodes seen.
+                    - If CC of $u$ has $\leq 8/\epsilon d$ nodes, return FALSE.
+                Return TRUE
+            \end{lstlisting}
+            BFS cost = $\frac{8}{\epsilon d} \cdot d$ \\
+            Total complexity = $O(1/\epsilon^2d)$
+        }
+        \end{minipage}
+    };
+    \node[fancytitle, right=10pt] at (box.north west) {Lecture 2 Connectivity};
+    \end{tikzpicture}
 
 \end{multicols*}
 \end{document}
