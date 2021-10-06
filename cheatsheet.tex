@@ -1,4 +1,3 @@
-
 \documentclass{article}
 \usepackage[landscape]{geometry}
 \usepackage{url}
@@ -247,10 +246,10 @@
                 - Choose a random node $u$
                 - Do a BFS from $u$, stopping after $8/\epsilon d$ nodes seen.
                 - If CC of $u$ has $\leq 8/\epsilon d$ nodes, return FALSE.
-            Return TRUE
+            return TRUE
         \end{lstlisting}
         BFS cost = $\frac{8}{\epsilon d} \cdot d$ \\
-        Total complexity = $O(1/\epsilon^2d)$
+        Total complexity = $O(\frac{1}{\epsilon^2d})$
     }
     \end{minipage}
 };
@@ -305,23 +304,98 @@
     \node [mybox] (box){%
         \begin{minipage}{0.3\textwidth}
         \small{
-            $G$ is \epsilon-close to connected if you can modify at most $\epsilon nd$ entries in the adjaceny list to make it connected.
-            If $G(V, E)$ is connected, output True, else if \epsilon-far from connected, output False. \\ 
+            Output $M$ such that: $M = MST(G)(1 \pm \epsilon)$ w.p. > $1 - \delta$. \\
+            Let $G_j$ be the graph with edge weights $j$ and below. \\
+            Let $C_j$ be the connected components in $G_j$. \\
+            $MST(G)$ contains $C_j - 1$ edges of weight > $j$. \\
+            Therefore: 
+            \begin{align*}
+                MST(G) &= (n - C_1) + \sum\limits_{j-1}^{W-1}(j+1)(C_j-C_j+1) \\
+                &= n - W + \sum\limits_{j-1}^{W-1}C_j \\
+            \end{align*}
             \begin{lstlisting}[mathescape]
-            Connected(G, n, d, $\epsilon$)
-                Repeat $16/\epsilon d$ times:
-                    - Choose a random node $u$
-                    - Do a BFS from $u$, stopping after $8/\epsilon d$ nodes seen.
-                    - If CC of $u$ has $\leq 8/\epsilon d$ nodes, return FALSE.
-                Return TRUE
+            sum := $n$ - $W$
+            for $j$ = 1 to $W$ - 1:
+                - $X_j$ = ApproxCC($G_j, d, \epsilon' \delta'$)
+                - sum := sum + $X_j$
+            return sum
             \end{lstlisting}
-            BFS cost = $\frac{8}{\epsilon d} \cdot d$ \\
-            Total complexity = $O(1/\epsilon^2d)$
+            Sum of errors: $(\epsilon'n)(W-1)$ \\ 
+            Set $\epsilon' = \epsilon/W$, then sum of errors $\leq \epsilon n$. \\
+            Set $\delta' = \delta/W$. Then $P(any fail) \leq \sum\limits_{1}^{W-1} \delta/W \leq \delta$. \\
+            $MST(G) - \epsilon n \leq sum \leq MST(G) + \epsilon n$ \\
+            Since $MST(G) \geq n - 1 \geq n/2$, $n \leq 2MST(G)$, \\
+            $MST(G)(1-2\epsilon) \leq sum \leq MST(G)(1+2\epsilon)$ \\
         }
         \end{minipage}
     };
-    \node[fancytitle, right=10pt] at (box.north west) {Lecture 2 Connectivity};
-    \end{tikzpicture}
+    \node[fancytitle, right=10pt] at (box.north west) {Lecture 3 MST weight};
+\end{tikzpicture}
+
+
+%------------ Lecture 3: Approx MM ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        \small{
+            Return the size of the Maximal Matching.
+            \begin{lstlisting}[mathescape]
+            query($e$):
+                for all neighbours $e'$ of $e$:
+                    if hash($e'$) < hash($e$)
+                        if query($e'$) = TRUE
+                            return FALSE
+                return TRUE
+
+            sum := 0
+            for $j$ = 1 to $s$:
+                - Choose edge $e$ uniformly at random.
+                - if (query($e$) = True)
+                    sum := sum + 1
+            return m$\cdot$sum/s
+            \end{lstlisting}
+            $E[cost] = 2\sum\limits_{k=1}^{\infty} \frac{d^k}{k!} = O(e^d)$. \\
+            $sum = MM(G) \pm \epsilon m$. \\ 
+            Complexity = $O(\frac{e^d}{\epsilon^2})$. \\
+            Can do better: $O(\frac{d^4}{\epsilon^2})$, even $O(\frac{d^2}{\epsilon^2})$, and reduce error to $\pm \epsilon n$.
+        }
+        \end{minipage}
+    };
+    \node[fancytitle, right=10pt] at (box.north west) {Lecture 3 Maximal Matching};
+\end{tikzpicture}
+
+
+
+
+\vfill\null
+\columnbreak
+
+
+
+%------------ Lecture 3: Yao's Mini-Max principle ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        \small{
+            Every randomized algorithm on a worst-case input is always slower than
+            the best deterministic algorithm on the worst distribution. \\
+            $\forall A \in R : \max\limits_{x \in X}(E[cost(A,x)])$ \\ 
+            $\geq \min\limits_{B \in D}(E[cost(B, x chosen from \gamma)])$ \\
+
+            Recipe: 
+            \begin{itemize}
+                \item Choose distribution $\gamma$.
+                \item Show that the expected cost of every deterministic algorithm from $\gamma$
+                is greater than some cost $c$.
+                \item Conclude that every randomized algorithm has at least one input with expected cost
+                at least as bad as $c$.
+            \end{itemize}
+        }
+        \end{minipage}
+    };
+    \node[fancytitle, right=10pt] at (box.north west) {Lecture 3 Yao's Mini-Max};
+\end{tikzpicture}
+
 
 \end{multicols*}
 \end{document}
