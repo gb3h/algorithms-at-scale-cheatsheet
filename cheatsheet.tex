@@ -379,9 +379,10 @@
         \small{
             Every randomized algorithm on a worst-case input is always slower than
             the best deterministic algorithm on the worst distribution. \\
-            $\forall A \in R : \max\limits_{x \in X}(E[cost(A,x)])$ \\ 
-            $\geq \min\limits_{B \in D}(E[cost(B, x chosen from \gamma)])$ \\
-
+            \begin{multline*}
+                \forall A \in R : \max\limits_{x \in X}(E[cost(A,x)]) \\ 
+                \geq \min\limits_{B \in D}(E[cost(B, x chosen from \gamma)])
+            \end{multline*}
             Recipe: 
             \begin{itemize}
                 \item Choose distribution $\gamma$.
@@ -394,6 +395,104 @@
         \end{minipage}
     };
     \node[fancytitle, right=10pt] at (box.north west) {Lecture 3 Yao's Mini-Max};
+\end{tikzpicture}
+
+
+%------------ Lecture 4: Misra-Gries ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        \small{
+            $count(x)$: $N(x) - \epsilon m \leq count(x) \leq N(x) + \epsilon m$. \\
+            Heavy Hitters: returns
+            \begin{itemize}
+                \item every item that appears $\geq 2 \epsilon m$ times.
+                \item no item that appears $< \epsilon m$ times.
+            \end{itemize}
+            \begin{lstlisting}[mathescape]
+                Set $P$ of $<item, count>$ pairs
+                For each $u$ in stream $S$:
+                    1. if $<u,c>$ is in set $P$, increment $c$.
+                    2. else add $<u,1>$ to set $P$.
+                    3. if $|P| > k$, decrement count $c$ for each item.
+                    4. Remove all items from $P$ with count $c = 0$.
+                
+                Count($x$):
+                    1. if $<x,c>$ is in $P$, return $c$.
+                    2. else return 0.
+            \end{lstlisting}
+            Choose $k = 1/\epsilon$. Then $N(x) - \epsilon m \leq count(x) \leq N(x)$. \\
+            Space required: $O(klogm)$. \\
+            Proof: 
+            \begin{itemize}
+                \item Count of $x$ is incremented $N(x)$ times in total.
+                \item Total increments is $m$.
+                \item When $count(x)$ is decremented, at least $k$ items are also decremented.
+                \item At most $m$ decrements in total. 
+                \item So $count(x)$ is decremented at most $m/k$ times.
+            \end{itemize}
+            For Heavy Hitters: return $x$ if $count(x) \geq \epsilon m$.
+        }
+        \end{minipage}
+    };
+    \node[fancytitle, right=10pt] at (box.north west) {Lecture 4 Misra Gries};
+\end{tikzpicture}
+
+
+
+
+\vfill\null
+\columnbreak
+
+
+%------------ Lecture 7: External Memory ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        \small{
+            Cache size = $M$. Block size = $B$. Number of lines (cache slots) = $M/B$. \\
+            Assumptions:
+            \begin{itemize}
+                \item One cache level.
+                \item Only memory access has cost.
+                \item Ideal cache and replacement.
+            \end{itemize}
+            \begin{tabular}{|l|c|c|}\hline
+                \textbf{Problem} & \textbf{Classical} & \textbf{EMM} \\ \hline
+                 Scan Linked List & $O(N)$ & $O(N)$ \\
+                 Scan Array & $O(N)$ & $O(N/B)$ \\
+                 Search Linked List & $O(N)$ & $O(N)$ \\
+                 Search Red-black tree & $O(log N)$ & $O(log N)$ \\
+                 Search Array & $O(log N)$ & $O(log (N/B))$ \\
+                 Search B-tree & $O(log_BN)$ & $O(log_BN)$ \\
+                 Sort B-tree & $O(NlogN)$ & $O(Nlog_BN)$ \\
+                 Read/Write B-tree & $O(log_BN)$ & $O(log_BN)$ \\
+                \hline
+            \end{tabular}
+
+        }
+        \end{minipage}
+    };
+    \node[fancytitle, right=10pt] at (box.north west) {Lecture 7 External Memory Model};
+\end{tikzpicture}
+
+
+
+%------------ Lecture 7: Caching ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        \small{
+            $(a,b)-tree$ with $n$ keys has height $\leq log_a(\frac{n}{a}) + 1$.\\
+            At most $n/a$ leaves. Every node except the root has degree $> a$. \\
+            Node at height $log_a(\frac{n}{a})$ has $\geq a^{log_a(\frac{a}{n})} \geq \frac{n}{a}$ leaves. \\ 
+            Corollary: if $a\geq B$, then $(a,b)-tree$ with $n$ keys has height $O(log_B n)$. \\
+            Amortized cost of split/share/merge is $O(1/B)$, thus $O((1/B) log_BN)$ per operation. \\
+            With parent points: insert may cost $O(B log_B N)$ if every level needs to split.
+        }
+        \end{minipage}
+    };
+    \node[fancytitle, right=10pt] at (box.north west) {Lecture 7 Caching};
 \end{tikzpicture}
 
 
