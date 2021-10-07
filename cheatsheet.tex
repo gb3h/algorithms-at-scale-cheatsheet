@@ -103,9 +103,11 @@
     	\textit{Powers of 2}:
     	& $\sum\limits_{i=0}^{n}2^i = 2^{n+1}-1$ \\
     	\textit{$1/e$}: 
-    	& = 0.36787944117 \\ 
+    	& $= 0.36787944117$\\ 
     	\textit{$1/e^2$}:
-    	& = 0.13533528323 \\ 
+    	& $= 0.13533528323 \leq 1/6$ \\ 
+    	\textit{$1/e^3$}:
+        & $= 0.04978706836 \leq 1/20$ \\
         \end{tabular}
     }
     \end{minipage}
@@ -239,7 +241,7 @@
     \begin{minipage}{0.3\textwidth}
     \small{
         $G$ is \epsilon-close to connected if you can modify at most $\epsilon nd$ entries in the adjaceny list to make it connected.
-    	If $G(V, E)$ is connected, output True, else if \epsilon-far from connected, output False. \\ 
+    	If $G(V, E)$ is connected, output True, else if \epsilon-far from connected, output False. 
         \begin{lstlisting}[mathescape]
         Connected(G, n, d, $\epsilon$)
             Repeat $16/\epsilon d$ times:
@@ -311,7 +313,7 @@
             Therefore: 
             \begin{align*}
                 MST(G) &= (n - C_1) + \sum\limits_{j-1}^{W-1}(j+1)(C_j-C_j+1) \\
-                &= n - W + \sum\limits_{j-1}^{W-1}C_j \\
+                &= n - W + \sum\limits_{j-1}^{W-1}C_j 
             \end{align*}
             \begin{lstlisting}[mathescape]
             sum := $n$ - $W$
@@ -325,7 +327,7 @@
             Set $\delta' = \delta/W$. Then $P(any fail) \leq \sum\limits_{1}^{W-1} \delta/W \leq \delta$. \\
             $MST(G) - \epsilon n \leq sum \leq MST(G) + \epsilon n$ \\
             Since $MST(G) \geq n - 1 \geq n/2$, $n \leq 2MST(G)$, \\
-            $MST(G)(1-2\epsilon) \leq sum \leq MST(G)(1+2\epsilon)$ \\
+            $MST(G)(1-2\epsilon) \leq sum \leq MST(G)(1+2\epsilon)$
         }
         \end{minipage}
     };
@@ -378,7 +380,7 @@
         \begin{minipage}{0.3\textwidth}
         \small{
             Every randomized algorithm on a worst-case input is always slower than
-            the best deterministic algorithm on the worst distribution. \\
+            the best deterministic algorithm on the worst distribution.
             \begin{multline*}
                 \forall A \in R : \max\limits_{x \in X}(E[cost(A,x)]) \\ 
                 \geq \min\limits_{B \in D}(E[cost(B, x chosen from \gamma)])
@@ -441,8 +443,49 @@
 
 
 
+
+%------------ Lecture 5: Spanner ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        \small{
+            If graph $H$ has $girth(H) > 2k \rightarrow H$ has $O(n^{1+1/k})$ edges. \\ 
+            log($n$)-spanner space with $k$ = log($n$): requires $O(nlogn)$ space.
+        }
+        \end{minipage}
+    };
+    \node[fancytitle, right=10pt] at (box.north west) {Lecture 5 Spanner};
+\end{tikzpicture}
+
+
 \vfill\null
 \columnbreak
+
+
+%------------ Lecture 6: k-Median Clustering ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        \small{
+            Cost of each node $i$: $C_i = \sum\limits_i x_{i,j}d(p_i,p_j)$.\\
+            The LP minimizes $min \sum\limits_i C_i$. \\
+            Goal: round fractional LP such that $C_i' \leq 4C_i$.
+            \begin{itemize}
+                \item If some $p_i$ is within $4C_j$ of $p_j$, remove $p_i$ from centers.
+                \item In other words: if there is $q$ s.t. $d(p_i,q) \leq 2C_i$ and $d(p_j,q) \leq 2C_j$,
+                delete $p_i$.
+                \item $C_j \leq C_i$ because of the order of node processing.
+            \end{itemize}
+            Goal: less than $2k$ centers.
+            \begin{itemize}
+                \item $\sum\limits_{i: d(p_i, p_j) \leq 2C_j}y_i \geq 1/2$
+                \item Since y's sum to k, if $V(i)$ are disjoint, cannot add more than $2k$ points to $S$.
+            \end{itemize}
+        }
+        \end{minipage}
+    };
+    \node[fancytitle, right=10pt] at (box.north west) {Lecture 6 k-Median Clustering};
+\end{tikzpicture}
 
 
 %------------ Lecture 7: External Memory ---------------
