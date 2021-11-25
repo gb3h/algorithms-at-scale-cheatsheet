@@ -483,20 +483,19 @@
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
                 \small{
+                    \textbf{B-Trees:}
                     $(a,b)-tree$ with $n$ keys has height $\leq log_a(\frac{n}{a}) + 1$.\\
                     At most $n/a$ leaves. Every node except the root has degree $> a$. \\
                     Node at height $log_a(\frac{n}{a})$ has $\geq a^{log_a(\frac{a}{n})} \geq \frac{n}{a}$ leaves. \\
                     Corollary: if $a\geq B$, then $(a,b)-tree$ with $n$ keys has height $O(log_B n)$. \\
+                    \textbf{BufferTrees:}
                     Amortized cost of split/share/merge is $O(1/B)$, thus $O((1/B) log_BN)$ per operation. \\
-                    With parent points: insert may cost $O(B log_B N)$ if every level needs to split.
+                    With parent pointers: insert may cost $O(B log_B N)$ if every level needs to split.
                 }
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {Lecture 7 Caching};
     \end{tikzpicture}
-
-    \vfill\null
-    \columnbreak
 
     \begin{tikzpicture}
         \node [mybox] (box){%
@@ -513,7 +512,33 @@
                 }
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {van Emde Boas Tree};
+        \node[fancytitle, right=10pt] at (box.north west) {Lecture 9: van Emde Boas Tree};
+    \end{tikzpicture}
+
+    \vfill\null
+    \columnbreak
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \small{
+                We can BFS in $O(n + \frac{m}{B}log_{M/B}m/B)$. \\
+                Inductive invariant: $L_i$ and $L_{i-1}$ are sorted. \\
+                Let $N(L_i)$ be the set of edges adjacent to nodes in $L_i$.
+                \begin{enumerate}
+                    \item \textbf{Enumeration:} Iterate through each $u \in L_i$ to make $L_{i+1}^{tmp}$, which may contain duplicates and nodes in $L_i/L_{i-1}$. Cost is $2|L_i| + |N(L_i)|/B$.
+                    \item \textbf{Duplicate removal:} Sort $L_{i+1}^{tmp}$ and remove duplicates by scanning. Cost is $sort(|N(L_i)|)$ and $|N(L_i)|/B$ for scanning.
+                    \item \textbf{Removing visited nodes:} Finally, we can make $L_{i+1}$ by removing nodes in $L_i/L_{i-1}$ from $L_{i+1}^{tmp}$. Double concurrent pointers strategy: cost is $O(|N(L_i)|/B + |L_i|/B + |L_{i-1}|/B)$.
+                \end{enumerate}
+                Total cost for level $L_{i+1}$: \\
+                $O(|L_i| + |N(L_i)|/B + sort(|N(L_i)|) + |L_i|/B + |L_{i-1}|/B)$. \\
+                Total cost: \\
+                Note that $\sum_i |L_i| = |V|$ since every node appears in exactly 1 level. \\
+                Also, $\sum_i (|N(L_i)|/B) = |E|/B$ and $\sum_i sort(N(L_i)) \leq sort(|E|)$.
+                }
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {Lecture 10: BFS in the EMM};
     \end{tikzpicture}
 
 
