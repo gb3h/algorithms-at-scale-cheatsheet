@@ -541,6 +541,31 @@
         \node[fancytitle, right=10pt] at (box.north west) {Lecture 10: BFS in the EMM};
     \end{tikzpicture}
 
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \small{
+                    Cost is $O(sort(E) log(|E|/M))$. \\
+                    Main Idea: Recursively convert into a depth 1 tree. Connected nodes will have the same root.
+                    \begin{enumerate}
+                        \item \textbf{Divide:} Halve edge list $E$ into $E_1$ and $E_2$. Recursively solve $E_2$, contract $E_1$ with $E_2$, recurse on $E_1$, and merge.
+                        \item \textbf{Base case:} $\leq M$ edges, just do in memory.
+                        \item \textbf{Contract:} $E_2$ is a depth 1 tree. Edge list is sorted, so we say for $(u, v)$, $u$ is the root. Modify nodes in $E_1$ that are connected to nodes in $E_2$: if $(a, b) \in E_1$ has some $(u, b) \in E_2$, convert $(a, b)$ to $(a, u)$. Do for all different intersecting types. Basically, edges to leaves in $E_2$ can be converted to edges to the root.
+                              \begin{itemize}
+                                  \item Sort $E_1$ by first components and $E_2$ by second.
+                                  \item Scan through $E_1$ and $E_2$ in parallel, marking conversions.
+                                  \item Sort $E_1$ by second component and repeat.
+                              \end{itemize}
+                        \item Recurse on the contracted $E_1$.
+                        \item Merge. Do a simple contraction again to make sure we do not have a depth 2 tree.
+                    \end{enumerate}
+                    Cost: $T(|E|) \leq  2T(|E|/2) + O(sort(E))$. \\
+                    $T(M) = M/B$. Thus, $O(sort(E) log(|E|/M))$.
+                }
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {Lecture 10: CCs in the EMM};
+    \end{tikzpicture}
 
 \end{multicols*}
 \end{document}
