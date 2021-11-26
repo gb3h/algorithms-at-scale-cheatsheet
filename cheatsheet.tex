@@ -86,28 +86,28 @@
             \begin{minipage}{0.3\textwidth}
                 \small{
                     \begin{tabular}{lp{4cm} l}
-                        \textit{Taylor expansion}:
-                         & $e^{x} = 1 + x + \frac{x^2}{2!} + ... = \sum\limits^{\infty} \frac{x^n}{n!}$ \\
+                        % \textit{Taylor expansion}:
+                        %  & $e^{x} = 1 + x + \frac{x^2}{2!} + ... = \sum\limits^{\infty} \frac{x^n}{n!}$ \\
                         \textit{For $0 < x \leq 1$}:
-                         & $1-x \leq e^{-x} \leq 1 - \frac{x}{2}$                                       \\
+                         & $1-x \leq e^{-x} \leq 1 - \frac{x}{2}$              \\
                         \textit{For $0 < x \leq 1$}:
-                         & $\frac{1}{e^{2}} \leq (1-x)^{1/x} \leq \frac{1}{e}$                          \\
-                        \textit{Approx $\binom{a}{b}$}:
-                         & $(\frac{a}{b})^b \leq \binom{a}{b} \leq (\frac{ea}{b})^b$                    \\
-                        \textit{For $0 < x < 1$}:
-                         & $\sum\limits_{i=0}^{\infty} a^i = \frac{1}{1-a}$                             \\
-                        \textit{Natural log}:
-                         & $ln(n-1) \leq \sum\limits_{i=1}^{n} \frac{1}{i} \leq ln(n) + 1$              \\
-                        \textit{Powers of 2}:
-                         & $\sum\limits_{i=0}^{n}2^i = 2^{n+1}-1$                                       \\
+                         & $\frac{1}{e^{2}} \leq (1-x)^{1/x} \leq \frac{1}{e}$ \\
+                        % \textit{Approx $\binom{a}{b}$}:
+                        %  & $(\frac{a}{b})^b \leq \binom{a}{b} \leq (\frac{ea}{b})^b$                    \\
+                        % \textit{For $0 < x < 1$}:
+                        %  & $\sum\limits_{i=0}^{\infty} a^i = \frac{1}{1-a}$                             \\
+                        % \textit{Natural log}:
+                        %  & $ln(n-1) \leq \sum\limits_{i=1}^{n} \frac{1}{i} \leq ln(n) + 1$              \\
+                        % \textit{Powers of 2}:
+                        %  & $\sum\limits_{i=0}^{n}2^i = 2^{n+1}-1$                                       \\
                         \textit{$1/e$}:
-                         & $= 0.36787944117$                                                            \\
+                         & $= 0.36787944117$                                   \\
                         \textit{$1/e^2$}:
-                         & $= 0.13533528323 \leq 1/6$                                                   \\
+                         & $= 0.13533528323 \leq 1/6$                          \\
                         \textit{$1/e^3$}:
-                         & $= 0.04978706836 \leq 1/20$                                                  \\
+                         & $= 0.04978706836 \leq 1/20$                         \\
                         \textit{Variance}:
-                         & $Var[X] = E[(X - E[X])^2)]$                                                  \\
+                         & $Var[X] = E[(X - E[X])^2)]$                         \\
                          & $= E[X^2] - E[X]$
                     \end{tabular}
                 }
@@ -155,28 +155,28 @@
     % \vfill\null
     % \columnbreak
 
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-                \small{
-                    \begin{tabular}{|l|c|c|}\hline
-                        \textbf{Algorithm}  & \textbf{Classical}     & \textbf{Approx}                  \\ \hline
-                        BFS                 & $O(n+m)$               &                                  \\
-                        Connected?          & $O(n+m)$               & $O(\frac{1}{\epsilon^2d})$       \\
-                        \# CCs              & $O(n+m)$               & $O(\frac{d}{\epsilon^3})$        \\
-                        MST weight          & $O(mlogn)$             & $O(\frac{dW^4logW}{\epsilon^3})$ \\
-                        Prim's              & $O((m + n)\cdot logn)$ &                                  \\
-                        Prim's (Fib heap)   & $O(m + nlogn)$         &                                  \\
-                        Kruskal's (MST)     & $O(mlogn)$             &                                  \\
-                        Dijkstra            & $O((m + n)\cdot logn)$ &                                  \\
-                        Dijkstra (Fib heap) & $O(m + nlogn)$         &                                  \\
-                        \hline
-                    \end{tabular}
-                }
-            \end{minipage}
-        };
-        \node[fancytitle, right=10pt] at (box.north west) {Complexities};
-    \end{tikzpicture}
+    % \begin{tikzpicture}
+    %     \node [mybox] (box){%
+    %         \begin{minipage}{0.3\textwidth}
+    %             \small{
+    %                 \begin{tabular}{|l|c|c|}\hline
+    %                     \textbf{Algorithm}  & \textbf{Classical}     & \textbf{Approx}                  \\ \hline
+    %                     BFS                 & $O(n+m)$               &                                  \\
+    %                     Connected?          & $O(n+m)$               & $O(\frac{1}{\epsilon^2d})$       \\
+    %                     \# CCs              & $O(n+m)$               & $O(\frac{d}{\epsilon^3})$        \\
+    %                     MST weight          & $O(mlogn)$             & $O(\frac{dW^4logW}{\epsilon^3})$ \\
+    %                     Prim's              & $O((m + n)\cdot logn)$ &                                  \\
+    %                     Prim's (Fib heap)   & $O(m + nlogn)$         &                                  \\
+    %                     Kruskal's (MST)     & $O(mlogn)$             &                                  \\
+    %                     Dijkstra            & $O((m + n)\cdot logn)$ &                                  \\
+    %                     Dijkstra (Fib heap) & $O(m + nlogn)$         &                                  \\
+    %                     \hline
+    %                 \end{tabular}
+    %             }
+    %         \end{minipage}
+    %     };
+    %     \node[fancytitle, right=10pt] at (box.north west) {Complexities};
+    % \end{tikzpicture}
 
     % \begin{tikzpicture}
     %     \node [mybox] (box){%
@@ -200,30 +200,82 @@
     %     \node[fancytitle, right=10pt] at (box.north west) {Lecture 1 All 0s};
     % \end{tikzpicture}
 
+    % \begin{tikzpicture}
+    %     \node [mybox] (box){%
+    %         \begin{minipage}{0.3\textwidth}
+    %             \small{
+    %                 Give an array $A$ with $n$ elements, $A[i] \in {0, 1}$: \\
+    %                 (1) Find number of 1's $\pm \epsilon$ with probability at least $1-\delta$. \\
+    %                 Let $Y_i$ be $s$ independent samples in $[0, 1]$. \\
+    %                 Output = $Z = 1/s \sum Y_i$ \\
+    %                 Probability of failure:
+    %                 \begin{align*}
+    %                     Pr(|Z - E[Z]| \geq \epsilon) & \leq 2e^{-2s\epsilon^2}                                \\
+    %                                                  & \leq 2e^{-2\frac{ln(2/\delta)}{2\epsilon^2}\epsilon^2} \\
+    %                                                  & \leq 2e^{-ln(2/\delta)}                                \\
+    %                                                  & \leq \delta
+    %                 \end{align*}
+    %                 Fix $s = \frac{ln(2/\delta)}{2\epsilon^2}$
+    %             }
+    %         \end{minipage}
+    %     };
+    %     \node[fancytitle, right=10pt] at (box.north west) {Lecture 1 Number of 1s};
+    % \end{tikzpicture}
+
+    % \vfill\null
+    % \columnbreak
+
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
                 \small{
-                    Give an array $A$ with $n$ elements, $A[i] \in {0, 1}$: \\
-                    (1) Find number of 1's $\pm \epsilon$ with probability at least $1-\delta$. \\
-                    Let $Y_i$ be $s$ independent samples in $[0, 1]$. \\
-                    Output = $Z = 1/s \sum Y_i$ \\
-                    Probability of failure:
-                    \begin{align*}
-                        Pr(|Z - E[Z]| \geq \epsilon) & \leq 2e^{-2s\epsilon^2}                                \\
-                                                     & \leq 2e^{-2\frac{ln(2/\delta)}{2\epsilon^2}\epsilon^2} \\
-                                                     & \leq 2e^{-ln(2/\delta)}                                \\
-                                                     & \leq \delta
-                    \end{align*}
-                    Fix $s = \frac{ln(2/\delta)}{2\epsilon^2}$
+                    Return the size of the Maximal Matching.
+                    \begin{lstlisting}[mathescape]
+            query($e$):
+                for all neighbours $e'$ of $e$:
+                    if hash($e'$) < hash($e$)
+                        if query($e'$) = TRUE
+                            return FALSE
+                return TRUE
+
+            sum := 0
+            for $j$ = 1 to $s$:
+                - Choose edge $e$ uniformly at random.
+                - if (query($e$) = True)
+                    sum := sum + 1
+            return m$\cdot$sum/s
+            \end{lstlisting}
+                    $E[cost] = 2\sum\limits_{k=1}^{\infty} \frac{d^k}{k!} = O(e^d)$. \\
+                    $sum = MM(G) \pm \epsilon m$. \\
+                    Complexity = $O(\frac{e^d}{\epsilon^2})$. \\
+                    Can do better: $O(\frac{d^4}{\epsilon^2})$, even $O(\frac{d^2}{\epsilon^2})$, and reduce error to $\pm \epsilon n$.
                 }
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {Lecture 1 Number of 1s};
+        \node[fancytitle, right=10pt] at (box.north west) {Lecture 3 Maximal Matching};
     \end{tikzpicture}
 
-    % \vfill\null
-    % \columnbreak
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \small{
+                    $G$ is \epsilon-close to connected if you can modify at most $\epsilon nd$ entries in the adjaceny list to make it connected.
+                    If $G(V, E)$ is connected, output True, else if \epsilon-far from connected, output False.
+                    \begin{lstlisting}[mathescape]
+        Connected(G, n, d, $\epsilon$)
+            Repeat $16/\epsilon d$ times:
+                - Choose a random node $u$
+                - Do a BFS from $u$, stopping after $8/\epsilon d$ nodes seen.
+                - If CC of $u$ has $\leq 8/\epsilon d$ nodes, return FALSE.
+            return TRUE
+        \end{lstlisting}
+                    BFS cost = $\frac{8}{\epsilon d} \cdot d$ \\
+                    Total complexity = $O(\frac{1}{\epsilon^2d})$
+                }
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {Lecture 2 Connectivity};
+    \end{tikzpicture}
 
     \begin{tikzpicture}
         \node [mybox] (box){%
@@ -269,28 +321,6 @@
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
                 \small{
-                    $G$ is \epsilon-close to connected if you can modify at most $\epsilon nd$ entries in the adjaceny list to make it connected.
-                    If $G(V, E)$ is connected, output True, else if \epsilon-far from connected, output False.
-                    \begin{lstlisting}[mathescape]
-        Connected(G, n, d, $\epsilon$)
-            Repeat $16/\epsilon d$ times:
-                - Choose a random node $u$
-                - Do a BFS from $u$, stopping after $8/\epsilon d$ nodes seen.
-                - If CC of $u$ has $\leq 8/\epsilon d$ nodes, return FALSE.
-            return TRUE
-        \end{lstlisting}
-                    BFS cost = $\frac{8}{\epsilon d} \cdot d$ \\
-                    Total complexity = $O(\frac{1}{\epsilon^2d})$
-                }
-            \end{minipage}
-        };
-        \node[fancytitle, right=10pt] at (box.north west) {Lecture 2 Connectivity};
-    \end{tikzpicture}
-
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-                \small{
                     Output $M$ such that: $M = MST(G)(1 \pm \epsilon)$ w.p. > $1 - \delta$. \\
                     Let $G_j$ be the graph with edge weights $j$ and below. \\
                     Let $C_j$ be the connected components in $G_j$. \\
@@ -319,160 +349,148 @@
         \node[fancytitle, right=10pt] at (box.north west) {Lecture 3 MST weight};
     \end{tikzpicture}
 
+    % \begin{tikzpicture}
+    %     \node [mybox] (box){%
+    %         \begin{minipage}{0.3\textwidth}
+    %             \small{
+    %                 Every randomized algorithm on a worst-case input is always slower than
+    %                 the best deterministic algorithm on the worst distribution.
+    %                 \begin{multline*}
+    %                     \forall A \in R : \max\limits_{x \in X}(E[cost(A,x)]) \\
+    %                     \geq \min\limits_{B \in D}(E[cost(B, x chosen from \gamma)])
+    %                 \end{multline*}
+    %                 Recipe:
+    %                 \begin{itemize}
+    %                     \item Choose distribution $\gamma$.
+    %                     \item Show that the expected cost of every deterministic algorithm from $\gamma$
+    %                           is greater than some cost $c$.
+    %                     \item Conclude that every randomized algorithm has at least one input with expected cost
+    %                           at least as bad as $c$.
+    %                 \end{itemize}
+    %             }
+    %         \end{minipage}
+    %     };
+    %     \node[fancytitle, right=10pt] at (box.north west) {Lecture 3 Yao's Mini-Max};
+    % \end{tikzpicture}
+
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
                 \small{
-                    If graph $H$ has $girth(H) > 2k \rightarrow H$ has $O(n^{1+1/k})$ edges. \\
-                    log($n$)-spanner space with $k$ = log($n$): requires $O(nlogn)$ space.
+                    FM returns $1/X - 1, E[X] = \frac{1}{t+1}, Var[X] \leq \frac{1}{(t+1)^2}$. \\
+                    FM+: Run FM-subroutine $X_1, X_2, ..., X_a$. \\
+                    Take average: $Z = \frac{1}{a}\sum\limits_{j=1}^{a}X_j$. \\
+                    Return $C = 1/Z-1$. $Var[Z] = \frac{1}{a(t+1)^2}$.
+                    \begin{align*}
+                        Pr[|Z - \frac{1}{t+1}| \geq \epsilon(\frac{1}{t+1})] & \leq Var[Z]\frac{(t+1)^2}{\epsilon^2} \\
+                                                                             & \leq \frac{1}{a\epsilon^2}
+                    \end{align*}
+                    Let $a = 4/\epsilon^2$, $C \in t(1\pm 4\epsilon)$ w.p. $\geq 1/4$.\\
+
+                    FM++: Run FM+-subroutine $b$ times and take median. \\
+                    Claim: If $> 1/2$ of the $C_j$'s are good, median is good. \\
+                    Let $b = 36ln(2/\delta)$, FM++ returns $C \in t(1\pm 4\epsilon)$ w.p. $\geq 1 - \delta$.
                 }
             \end{minipage}
         };
-        \node[fancytitle, right=10pt] at (box.north west) {Lecture 5 Spanner};
+        \node[fancytitle, right=10pt] at (box.north west) {Lecture 4 FM};
     \end{tikzpicture}
+
+    % \begin{tikzpicture}
+    %     \node [mybox] (box){%
+    %         \begin{minipage}{0.3\textwidth}
+    %             \small{
+    %                 If graph $H$ has $girth(H) > 2k \rightarrow H$ has $O(n^{1+1/k})$ edges. \\
+    %                 log($n$)-spanner space with $k$ = log($n$): requires $O(nlogn)$ space.
+    %             }
+    %         \end{minipage}
+    %     };
+    %     \node[fancytitle, right=10pt] at (box.north west) {Lecture 5 Spanner};
+    % \end{tikzpicture}
+
+
+    % \begin{tikzpicture}
+    %     \node [mybox] (box){%
+    %         \begin{minipage}{0.3\textwidth}
+    %             \small{
+    %                 $count(x)$: $N(x) - \epsilon m \leq count(x) \leq N(x) + \epsilon m$. \\
+    %                 Heavy Hitters: returns
+    %                 \begin{itemize}
+    %                     \item every item that appears $\geq 2 \epsilon m$ times.
+    %                     \item no item that appears $< \epsilon m$ times.
+    %                 \end{itemize}
+    %                 \begin{lstlisting}[mathescape]
+    %             Set $P$ of $<item, count>$ pairs
+    %             For each $u$ in stream $S$:
+    %                 1. if $<u,c>$ is in set $P$, increment $c$.
+    %                 2. else add $<u,1>$ to set $P$.
+    %                 3. if $|P| > k$, decrement count $c$ for each item.
+    %                 4. Remove all items from $P$ with count $c = 0$.
+
+    %             Count($x$):
+    %                 1. if $<x,c>$ is in $P$, return $c$.
+    %                 2. else return 0.
+    %         \end{lstlisting}
+    %                 Choose $k = 1/\epsilon$. Then $N(x) - \epsilon m \leq count(x) \leq N(x)$. \\
+    %                 Space required: $O(klogm)$. \\
+    %                 Proof:
+    %                 \begin{itemize}
+    %                     \item Count of $x$ is incremented $N(x)$ times in total.
+    %                     \item Total increments is $m$.
+    %                     \item When $count(x)$ is decremented, at least $k$ items are also decremented.
+    %                     \item At most $m$ decrements in total.
+    %                     \item So $count(x)$ is decremented at most $m/k$ times.
+    %                 \end{itemize}
+    %                 For Heavy Hitters: return $x$ if $count(x) \geq \epsilon m$.
+    %             }
+    %         \end{minipage}
+    %     };
+    %     \node[fancytitle, right=10pt] at (box.north west) {Lecture 4 Misra Gries};
+    % \end{tikzpicture}
+
+    % \begin{tikzpicture}
+    %     \node [mybox] (box){%
+    %         \begin{minipage}{0.3\textwidth}
+    %             \small{
+    %                 Cost of each node $i$: $C_i = \sum\limits_i x_{i,j}d(p_i,p_j)$.\\
+    %                 The LP minimizes $min \sum\limits_i C_i$. \\
+    %                 Goal: round fractional LP such that $C_i' \leq 4C_i$.
+    %                 \begin{itemize}
+    %                     \item If some $p_i$ is within $4C_j$ of $p_j$, remove $p_i$ from centers.
+    %                     \item In other words: if there is $q$ s.t. $d(p_i,q) \leq 2C_i$ and $d(p_j,q) \leq 2C_j$,
+    %                           delete $p_i$.
+    %                     \item $C_j \leq C_i$ because of the order of node processing.
+    %                 \end{itemize}
+    %                 Goal: less than $2k$ centers.
+    %                 \begin{itemize}
+    %                     \item $\sum\limits_{i: d(p_i, p_j) \leq 2C_j}y_i \geq 1/2$
+    %                     \item Since y's sum to k, if $V(i)$ are disjoint, cannot add more than $2k$ points to $S$.
+    %                 \end{itemize}
+    %             }
+    %         \end{minipage}
+    %     };
+    %     \node[fancytitle, right=10pt] at (box.north west) {Lecture 6 k-Median Clustering};
+    % \end{tikzpicture}
 
     \begin{tikzpicture}
         \node [mybox] (box){%
             \begin{minipage}{0.3\textwidth}
                 \small{
-                    Return the size of the Maximal Matching.
-                    \begin{lstlisting}[mathescape]
-            query($e$):
-                for all neighbours $e'$ of $e$:
-                    if hash($e'$) < hash($e$)
-                        if query($e'$) = TRUE
-                            return FALSE
-                return TRUE
-
-            sum := 0
-            for $j$ = 1 to $s$:
-                - Choose edge $e$ uniformly at random.
-                - if (query($e$) = True)
-                    sum := sum + 1
-            return m$\cdot$sum/s
-            \end{lstlisting}
-                    $E[cost] = 2\sum\limits_{k=1}^{\infty} \frac{d^k}{k!} = O(e^d)$. \\
-                    $sum = MM(G) \pm \epsilon m$. \\
-                    Complexity = $O(\frac{e^d}{\epsilon^2})$. \\
-                    Can do better: $O(\frac{d^4}{\epsilon^2})$, even $O(\frac{d^2}{\epsilon^2})$, and reduce error to $\pm \epsilon n$.
-                }
-            \end{minipage}
-        };
-        \node[fancytitle, right=10pt] at (box.north west) {Lecture 3 Maximal Matching};
-    \end{tikzpicture}
-
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-                \small{
-                    Every randomized algorithm on a worst-case input is always slower than
-                    the best deterministic algorithm on the worst distribution.
-                    \begin{multline*}
-                        \forall A \in R : \max\limits_{x \in X}(E[cost(A,x)]) \\
-                        \geq \min\limits_{B \in D}(E[cost(B, x chosen from \gamma)])
-                    \end{multline*}
-                    Recipe:
-                    \begin{itemize}
-                        \item Choose distribution $\gamma$.
-                        \item Show that the expected cost of every deterministic algorithm from $\gamma$
-                              is greater than some cost $c$.
-                        \item Conclude that every randomized algorithm has at least one input with expected cost
-                              at least as bad as $c$.
-                    \end{itemize}
-                }
-            \end{minipage}
-        };
-        \node[fancytitle, right=10pt] at (box.north west) {Lecture 3 Yao's Mini-Max};
-    \end{tikzpicture}
-
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-                \small{
-                    $count(x)$: $N(x) - \epsilon m \leq count(x) \leq N(x) + \epsilon m$. \\
-                    Heavy Hitters: returns
-                    \begin{itemize}
-                        \item every item that appears $\geq 2 \epsilon m$ times.
-                        \item no item that appears $< \epsilon m$ times.
-                    \end{itemize}
-                    \begin{lstlisting}[mathescape]
-                Set $P$ of $<item, count>$ pairs
-                For each $u$ in stream $S$:
-                    1. if $<u,c>$ is in set $P$, increment $c$.
-                    2. else add $<u,1>$ to set $P$.
-                    3. if $|P| > k$, decrement count $c$ for each item.
-                    4. Remove all items from $P$ with count $c = 0$.
-                
-                Count($x$):
-                    1. if $<x,c>$ is in $P$, return $c$.
-                    2. else return 0.
-            \end{lstlisting}
-                    Choose $k = 1/\epsilon$. Then $N(x) - \epsilon m \leq count(x) \leq N(x)$. \\
-                    Space required: $O(klogm)$. \\
-                    Proof:
-                    \begin{itemize}
-                        \item Count of $x$ is incremented $N(x)$ times in total.
-                        \item Total increments is $m$.
-                        \item When $count(x)$ is decremented, at least $k$ items are also decremented.
-                        \item At most $m$ decrements in total.
-                        \item So $count(x)$ is decremented at most $m/k$ times.
-                    \end{itemize}
-                    For Heavy Hitters: return $x$ if $count(x) \geq \epsilon m$.
-                }
-            \end{minipage}
-        };
-        \node[fancytitle, right=10pt] at (box.north west) {Lecture 4 Misra Gries};
-    \end{tikzpicture}
-
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-                \small{
-                    Cost of each node $i$: $C_i = \sum\limits_i x_{i,j}d(p_i,p_j)$.\\
-                    The LP minimizes $min \sum\limits_i C_i$. \\
-                    Goal: round fractional LP such that $C_i' \leq 4C_i$.
-                    \begin{itemize}
-                        \item If some $p_i$ is within $4C_j$ of $p_j$, remove $p_i$ from centers.
-                        \item In other words: if there is $q$ s.t. $d(p_i,q) \leq 2C_i$ and $d(p_j,q) \leq 2C_j$,
-                              delete $p_i$.
-                        \item $C_j \leq C_i$ because of the order of node processing.
-                    \end{itemize}
-                    Goal: less than $2k$ centers.
-                    \begin{itemize}
-                        \item $\sum\limits_{i: d(p_i, p_j) \leq 2C_j}y_i \geq 1/2$
-                        \item Since y's sum to k, if $V(i)$ are disjoint, cannot add more than $2k$ points to $S$.
-                    \end{itemize}
-                }
-            \end{minipage}
-        };
-        \node[fancytitle, right=10pt] at (box.north west) {Lecture 6 k-Median Clustering};
-    \end{tikzpicture}
-
-    \begin{tikzpicture}
-        \node [mybox] (box){%
-            \begin{minipage}{0.3\textwidth}
-                \small{
-                    Cache size = $M$. Block size = $B$. Number of lines (cache slots) = $M/B$. \\
-                    Assumptions:
-                    \begin{itemize}
-                        \item One cache level.
-                        \item Only memory access has cost.
-                        \item Ideal cache and replacement.
-                    \end{itemize}
                     \begin{tabular}{|l|c|c|}\hline
-                        \textbf{Problem}        & \textbf{EMM}                     \\ \hline
-                        Scan Array              & $O(N/B)$                         \\
-                        Search Array            & $O(log (N/B))$                   \\
-                        Sort B-tree             & $O(Nlog_BN)$                     \\
-                        Search B-tree           & $O(log_BN)$                      \\
-                        Insert/Delete B-tree    & $O(log_BN)$                      \\
-                        Search BufferTree       & $O(logN)$                        \\
-                        Insert BufferTree       & $O((1/B) logN)$                  \\
-                        Ex.MergeSort/BufferTree & $O(\frac{N}{B}log_{M/B}N/B)$     \\
-                        BFS                     & $O(n + \frac{m}{B}log_{M/B}m/B)$ \\
+                        \textbf{Problem}            & \textbf{EMM}                     \\ \hline
+                        Scan Array                  & $O(N/B)$                         \\
+                        Search Array                & $O(log (N/B))$                   \\
+                        Sort B-tree                 & $O(Nlog_BN)$                     \\
+                        Search B-tree               & $O(log_BN)$                      \\
+                        Insert/Delete B-tree        & $O(log_BN)$                      \\
+                        Search BufferTree           & $O(logN)$                        \\
+                        Insert BufferTree           & $O((1/B) logN)$                  \\
+                        Search BufferTree $\sqrt B$ & $O(log_BN)$                      \\
+                        Insert BufferTree $\sqrt B$ & $O((1/\sqrt B) logN)$            \\
+                        Ex.MergeSort/BufferTree     & $O(\frac{N}{B}log_{M/B}N/B)$     \\
+                        BFS                         & $O(n + \frac{m}{B}log_{M/B}m/B)$ \\
                         \hline
                     \end{tabular}
-
                 }
             \end{minipage}
         };
@@ -489,8 +507,8 @@
                     Node at height $log_a(\frac{n}{a})$ has $\geq a^{log_a(\frac{a}{n})} \geq \frac{n}{a}$ leaves. \\
                     Corollary: if $a\geq B$, then $(a,b)-tree$ with $n$ keys has height $O(log_B n)$. \\
                     \textbf{BufferTrees:}
-                    Amortized cost of split/share/merge is $O(1/B)$, thus $O((1/B) log_BN)$ per operation. \\
-                    With parent pointers: insert may cost $O(B log_B N)$ if every level needs to split.
+                    Amortized cost of split/share/merge is $O(1/B)$, thus $O((1/B) logN)$ per operation. \\
+                    With parent pointers: insert may cost $O(B log N)$ if every level needs to split.
                 }
             \end{minipage}
         };
@@ -514,6 +532,24 @@
         };
         \node[fancytitle, right=10pt] at (box.north west) {Lecture 9: van Emde Boas Tree};
     \end{tikzpicture}
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \small{
+                    Span of ProcessFrontier (loose) is $O(log^3n)$. \\
+                    Work of ProcessFrontier is $O(mlog^2n)$. \\
+                    Total work $W = O(mlog^2n)$. \\
+                    Total Span $S = O(Dlog^3n)$. \\
+                    Totalruntime with $p$ processors and a good scheduler = $O((m/p) log2
+                        n + D log^3 n)$
+                }
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {Lecture 11: Parallel BFS};
+    \end{tikzpicture}
+
+
 
     \vfill\null
     \columnbreak
@@ -565,6 +601,82 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {Lecture 10: CCs in the EMM};
+    \end{tikzpicture}
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \small{
+                    Relegate the scheduling problem to a separate scheduling component. Create subtasks that are executed by the system in parallel. Up to $p$ subtasks running together. Always assume scheduler does a good job.
+                    \begin{itemize}
+                        \item Work $W$: how long to complete on 1 processor?
+                        \item Span $S$: how long would it take with $p = \infty$?
+                        \item Max Parallelism: $W/S$.
+                        \item Good scheduler will get you $O(W/p + S)$.
+                    \end{itemize}
+                    Parallel Sort:
+                    \begin{lstlisting}[mathescape]
+                        pMergeSort(A, n):
+                            if (n==1) then return; 
+                            else
+                                X = fork pMergeSort(A[1..n/2], n/2)
+                                Y = fork pMergeSort(A[n/2+1, n], n/2) 
+                                sync;
+                                M = median of X;
+                                A1 = pMerge(X[1...M], Y[1...M]);
+                                A2 = pMerge(X[M...end], Y[M...end]);
+                    \end{lstlisting}
+                    Work: $W(n)=W(\alpha n) + W((1-\alpha)n) + O(logn)$. \\
+                    Span: $S(n)=S(3n/4)+O(logn)=O(log^2n)$.
+                }
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {Lecture 11: PRAM and Fork Join model};
+    \end{tikzpicture}
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \small{
+                    Set 1 (n items), set 2 (m items), n > m. \\
+                    \begin{tabular}{|l|c|c|}\hline
+                        \textbf{Problem} & \textbf{Parallel}                \\ \hline
+                        insert           & $W = S = O(logn)$                \\
+                        delete           & $W = S = O(logn)$                \\
+                        divide           & $W = S = O(logn)$                \\
+                        union            & $W = O(n+m), S = O(logn + logm)$ \\
+                        set diff/sub     & $W = O(n+m), S = O(logn + logm)$ \\
+                        intersection     & $W = O(n+m), S = O(logn + logm)$ \\
+                        \hline
+                    \end{tabular}
+                    Can implement everything with the following operations in (2,4)-tree with:
+                    Work = Span = $O(log n + log m)$.
+                    \begin{itemize}
+                        \item \textbf{Split(T, x)} $\rightarrow$ (T1, T2, x)
+                        \item \textbf{Join(T1, T2)} $\rightarrow$ (T)
+                        \item \textbf{Root(T)} $\rightarrow$ (x)
+                        \item \textbf{Insert(T, x)} $\rightarrow$ (T')
+                    \end{itemize}
+                    \begin{lstlisting}[mathescape]
+                        Union(T1, T2)
+                            if T1 = null: return T2 
+                            if T2 = null: return T1
+                            key = root(T1)
+                            (L, G, x) = split(T2, key)
+                            fork:
+                                1. TL = Union(key.left, L)
+                                2. TR = Union(key.right, R)
+                            sync
+                            T = join(TL, TR) 
+                            insert(T, key) 
+                            return T
+                    \end{lstlisting}
+                    $W(n, m) = 2W(n/2, m) + O(logn + logm) = O(nlogm)$. \\
+                    $S(n, m) = S(n/2, m) + O(logn + logm) = O(log^2n)$.
+                }
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {Lecture 11: Parallel Sets};
     \end{tikzpicture}
 
 \end{multicols*}
