@@ -261,14 +261,6 @@
                 \small{
                     $G$ is \epsilon-close to connected if you can modify at most $\epsilon nd$ entries in the adjaceny list to make it connected.
                     If $G(V, E)$ is connected, output True, else if \epsilon-far from connected, output False.
-                    \begin{lstlisting}[mathescape]
-        Connected(G, n, d, $\epsilon$)
-            Repeat $16/\epsilon d$ times:
-                - Choose a random node $u$
-                - Do a BFS from $u$, stopping after $8/\epsilon d$ nodes seen.
-                - If CC of $u$ has $\leq 8/\epsilon d$ nodes, return FALSE.
-            return TRUE
-        \end{lstlisting}
                     BFS cost = $\frac{8}{\epsilon d} \cdot d$ \\
                     Total complexity = $O(\frac{1}{\epsilon^2d})$
                 }
@@ -315,6 +307,19 @@
             \end{minipage}
         };
         \node[fancytitle, right=10pt] at (box.north west) {Lecture 2 Connected Components};
+    \end{tikzpicture}
+
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.3\textwidth}
+                \small{
+                    A graph $H$ with no cycles of length $\leq 2k$ has at most $n^{1+1/k}$ edges. \\
+                    e.g. log($n$)-spanner space with $k$ = log($n$): requires $O(nlogn)$ space. \\
+                    e.g. no 3 or 4 length cycle -> $O(n^{3/2})$ edges.
+                }
+            \end{minipage}
+        };
+        \node[fancytitle, right=10pt] at (box.north west) {Lecture 5 Spanner};
     \end{tikzpicture}
 
     \begin{tikzpicture}
@@ -395,19 +400,6 @@
         };
         \node[fancytitle, right=10pt] at (box.north west) {Lecture 4 FM};
     \end{tikzpicture}
-
-    % \begin{tikzpicture}
-    %     \node [mybox] (box){%
-    %         \begin{minipage}{0.3\textwidth}
-    %             \small{
-    %                 If graph $H$ has $girth(H) > 2k \rightarrow H$ has $O(n^{1+1/k})$ edges. \\
-    %                 log($n$)-spanner space with $k$ = log($n$): requires $O(nlogn)$ space.
-    %             }
-    %         \end{minipage}
-    %     };
-    %     \node[fancytitle, right=10pt] at (box.north west) {Lecture 5 Spanner};
-    % \end{tikzpicture}
-
 
     % \begin{tikzpicture}
     %     \node [mybox] (box){%
